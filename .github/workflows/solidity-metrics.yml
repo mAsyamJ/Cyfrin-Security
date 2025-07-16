@@ -1,0 +1,20 @@
+name: Solidity Metrics
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Run Solidity Metrics
+        uses: janusvm/solidity-metrics-action@v0.2.1
+        with:
+          path: ./src  # Replace with your folder path
