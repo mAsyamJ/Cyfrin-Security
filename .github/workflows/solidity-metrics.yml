@@ -7,19 +7,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Run Solidity Metrics
         uses: tintinweb/solidity-metrics-action@v1
         with:
           target: 'src/PasswordStore.sol'
-          args: '--directory ./src --output /github/workspace/metrics.md'
+          args: '--output /github/workspace/metrics.md'
 
-      - name: List files (debug)
+      - name: List output files (debug)
         run: ls -lah
 
-      - name: Upload metrics report
+      - name: Print metrics (debug)
+        run: cat metrics.md || echo "metrics.md not found"
+
+      - name: Upload metrics artifact
         uses: actions/upload-artifact@v4
         with:
           name: solidity-metrics-report
