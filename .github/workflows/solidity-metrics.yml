@@ -17,5 +17,4 @@ jobs:
       - name: Run solidity-metrics
         uses: tintinweb/solidity-metrics-action@v1
         with:
-          entryPoint: ./src # or ./src if that's your folder
-          args: "--output metrics.md"
+          args: "--directory ./src --output metrics.md"
