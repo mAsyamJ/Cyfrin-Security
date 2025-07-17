@@ -14,16 +14,13 @@ jobs:
         uses: tintinweb/solidity-metrics-action@v1
         with:
           target: 'src/PasswordStore.sol'
-          args: '--output /github/workspace/metrics.md'
+          args: '--output /github/workspace/__metrics.html'
 
-      - name: List output files (debug)
-        run: ls -lah
+      - name: Debug output
+        run: ls -lah && cat __metrics.html | head -n 20
 
-      - name: Print metrics (debug)
-        run: cat metrics.md || echo "metrics.md not found"
-
-      - name: Upload metrics artifact
+      - name: Upload HTML metrics report
         uses: actions/upload-artifact@v4
         with:
           name: solidity-metrics-report
-          path: metrics.md
+          path: __metrics.html
