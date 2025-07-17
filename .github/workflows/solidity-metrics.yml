@@ -7,20 +7,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run solidity-metrics
+      - name: Run Solidity Metrics
         uses: tintinweb/solidity-metrics-action@v1
         with:
-          target: ./src
-          output: /github/workspace/metrics.md # ✅ ensure it's in the shared volume
+          entryPoint: "./src"
+          args: "--directory ./src --output /github/workspace/metrics.md"
 
-      - name: List current directory contents (debug)
+      - name: Show contents (debug)
         run: ls -lah
-
-      - name: Check metrics file exists (debug)
-        run: cat metrics.md || echo "metrics.md not found!"
 
       - name: Upload metrics report
         uses: actions/upload-artifact@v4
