@@ -20,5 +20,3 @@ jobs:
         with:
           name: solidity-metrics
           path: metrics.md
-      - name: Display Metrics
-        run: cat metrics.md 
