@@ -1,25 +1,24 @@
 name: Solidity Metrics
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push]
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
-
+    name: Run Solidity Metrics
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Run solidity-metrics
+      - name: Run Solidity Metrics
         uses: tintinweb/solidity-metrics-action@v1
         with:
-          args: "--directory ./src --output metrics.md"
-      - name: Upload metrics.md as artifact
-        uses: actions/upload-artifact@v3
+          target: '**/*.sol'
+          args: '--directory ./src --output metrics.md'
+
+      - name: Upload Metrics as Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: solidity-metrics
           path: metrics.md
+      - name: Display Metrics
+        run: cat metrics.md 
