@@ -9,11 +9,13 @@ on:
 jobs:
   analyze:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run Solidity Metrics
-        uses: janusvm/solidity-metrics-action@main
+      - name: Run solidity-metrics
+        uses: tintinweb/solidity-metrics-action@v1
         with:
-          path: ./src  # or ./contracts
+          directory: ../src         # or ./src depending on your layout
+          output_file: metrics.md
