@@ -18,3 +18,8 @@ jobs:
         uses: tintinweb/solidity-metrics-action@v1
         with:
           args: "--directory ./src --output metrics.md"
+      - name: Upload metrics.md as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: solidity-metrics
+          path: metrics.md
